@@ -1,0 +1,78 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head}"></head>
+
+<body>
+
+	<div th:replace="~{base :: logo}"></div>
+	<div th:fragment="principal" class="container">
+
+
+		<div class="jumbotron mb-0">
+			<div class="card-body text-secondary ">
+				<h5 class="card-title">Novo Agendamento</h5>
+			</div>
+
+			<nav
+				class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link alert-danger" href="">Agendados </a> <a
+						class="nav-item nav-link"> <a
+						class="nav-item nav-link alert-dark"
+						th:href="@{/agendamento/formulario}">Novo </a>
+				</div>
+			</nav>
+		</div>
+
+	<br><br>
+		<div class="card mb-5" th:each="agendamento : ${agendamentos}">
+
+			<div for="nomeDoTutor">Nome do Tutor</div>
+			<div>
+				<input th:value="${agendamento.nomeDoTutor}" value="nome tutor" class="form-control" required>
+			</div>
+
+			<div>Nome do Pet</div>
+			<div>
+				<input th:value="${agendamento.nomeDoPet}" class="form-control" required>
+			</div>
+			
+			<div class="form-group">
+    				<label for="servicos">Serviços</label>
+    					<select name="servicos" class="form-control" id="exampleFormControlSelect1">
+      						 <option th:text="${agendamento.servicos}"  selected>Selecione</option>
+      						<option >Banho e tosa</option>
+		     				<option >Banho</option>
+							<option >Tosa</option>
+							<option >Consulta</option>
+							<option >Retorno</option>
+    					</select>
+  				</div>
+  				
+  					<input type="date" th:value="*{agendamento.dataAgendamento}" class="form-control mb-4 col-4"> 
+  				
+  				<div>Valor:</div>
+			<div>
+				<input th:value="${agendamento.valor}" class="form-control mb-4 col-4">
+			</div>
+  				
+  				<div class="form-group">
+    				<label for="especie">Espécie</label>
+    					<select class="form-control"  id="exampleFormControlSelect1">
+      						 <option th:text="${agendamento.especie}"  selected>Selecione</option>
+      						<option >Canina</option>
+      						<option >Felina</option>
+     						<option >Aves</option>
+    					</select>
+  				</div>
+  
+  
+  			<div>	
+  				<div for="observacao">Observações importantes</div>
+				  <textarea class="form-control"  th:text="${agendamento.observacao}">Observações</textarea>
+			</div>
+			
+				<a th:href="@{/agendamento/delete(id=${agendamento.id})}"  class="nav-item nav-link alert-dark"  >Excluir </a>
+
+		</div>
+</body>
+</html>

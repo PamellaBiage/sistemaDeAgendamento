@@ -1,0 +1,65 @@
+<html>
+
+	<head th:replace="~{base :: head}">
+		<meta charset="UTF-8">
+	</head>
+
+	<body>
+		<div th:replace="~{base :: logo}"></div>
+			<div th:replace="~{home :: principal}"></div>
+	
+	<form action="/agendamento/novo" method="POST" th:object="${requisicaoNovoAgendamento}">
+	
+		<div class="card-header">
+			
+			<div for="nomeDoTutor"> Nome do Tutor </div>
+				<div >
+					<input th:field="*{nomeDoTutor}" th:errorclass="{is-invalid}" class="form-control" required>
+				</div>
+				<div class="invalid-feedback" th:errors="*{nomeDoTutor}" >
+					Erros do nome do tutor
+				</div>
+			<br>
+			<div for="nomeDoPet"> Nome do Pet </div>
+			<div>
+				<input th:field="*{nomeDoPet}" th:errorclass="{is-invalid}" class="form-control" required>
+			</div>
+					<div class="invalid-feedback" th:errors="*{nomeDoTutor}" >
+					Erros do nome do Pet
+				</div>
+				<br>
+				<div class="form-group">
+    				<label for="servicos">Serviços</label>
+    					<select name="servicos" class="form-control" id="exampleFormControlSelect1">
+      						<option th:field="*{servicos}" th:value="BT">Banho e tosa</option>
+		     				<option th:field="*{servicos}"  th:value="B">Banho</option>
+							<option th:field="*{servicos}"  th:value="T">Tosa</option>
+							<option  th:field="*{servicos}"  th:value="C">Consulta</option>
+							<option  th:field="*{servicos}"  th:value="R">Retorno</option>
+    					</select>
+  				</div>
+  				
+  				<div class="form-group">
+    				<label for="especie">Espécie</label>
+    					<select name="especie" class="form-control" id="exampleFormControlSelect1">
+      						<option th:value="C">Canina</option>
+      						<option th:value="F">Felina</option>
+     						<option th:value="A">Aves</option>
+    					</select>
+  				</div>
+  
+  			<div>	
+  				<div for="observacao">Observações importantes</div>
+				  <textarea name="observacao" class="form-control">Observações</textarea>
+			</div>
+			
+			<br>
+			
+			<button type="submit" class="btn btn-secondary btn-lg disabled">Agendar</button>
+	
+		</form>
+		
+	</body>
+	
+
+</html>

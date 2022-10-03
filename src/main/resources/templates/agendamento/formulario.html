@@ -1,0 +1,83 @@
+<html>
+
+	<head th:replace="~{base :: head}">
+		<meta charset="UTF-8">
+	</head>
+
+	<body>
+		<div th:replace="~{base :: logo}"></div>
+	
+	<div class="jumbotron mb-0">
+				<div class="card-body text-secondary "  >
+					<h5 class="card-title">Formulário de Agendamento</h5>
+				</div>
+
+	
+	<form action="/agendamento/novo" method="POST" th:object="${requisicaoNovoAgendamento}">
+	
+		<div class="card-header">
+			
+			<div for="nomeDoTutor"> Nome do Tutor </div>
+				<div >
+					<input th:field="*{nomeDoTutor}" th:errorclass="{is-invalid}" class="form-control" required>
+				</div>
+				<div class="invalid-feedback" th:errors="*{nomeDoTutor}" >
+					Erros do nome do tutor
+				</div>
+			<br>
+			<div for="nomeDoPet"> Nome do Pet </div>
+			<div>
+				<input th:field="*{nomeDoPet}" th:errorclass="{is-invalid}" class="form-control" required>
+			</div>
+					<div class="invalid-feedback" th:errors="*{nomeDoTutor}" >
+					Erros do nome do Pet
+				</div>
+				<br>
+				<div class="form-group">
+    				<label for="servicos">Serviços</label>
+    					<select name="servicos" class="form-control" id="exampleFormControlSelect1">
+      						 <option selected>Selecione</option>
+      						<option th:field="*{servicos}" th:value="BT">Banho e tosa</option>
+		     				<option th:field="*{servicos}"  th:value="Banho">Banho</option>
+							<option th:field="*{servicos}"  th:value="Tosa">Tosa</option>
+							<option  th:field="*{servicos}"  th:value="Consulta">Consulta</option>
+							<option  th:field="*{servicos}"  th:value="Retorno">Retorno</option>
+    					</select>
+  				</div>
+  				
+  				<br>
+  				
+  					<input type="date" th:field="*{dataTexto}" class="form-control mb-4 col-4"> 
+  					
+  						<div for="valor"> Valor </div>
+				<div >
+					<input th:field="*{valor}" th:errorclass="{is-invalid}" class="form-control mb-4 col-4" required>
+				</div>
+
+  				<div class="form-group">
+    				<label for="especie">Espécie</label>
+    					<select name="especie" class="form-control" id="exampleFormControlSelect1">
+      						 <option selected>Selecione</option>
+      						<option th:value="Canina">Canina</option>
+      						<option th:value="Felina">Felina</option>
+     						<option th:value="Ave">Aves</option>
+    					</select>
+  				</div>
+  
+  			<div>	
+  				<div for="observacao">Observações importantes</div>
+				  <textarea name="observacao" class="form-control" placeholder="Observações"></textarea>
+			</div>
+			
+			<br>
+			
+			<button type="submit" class="btn btn-secondary btn-lg disabled">Agendar</button>
+			<br>	<br>
+			<a class="nav-item nav-link alert-dark"  th:href="@{/inicio}">Voltar </a>
+	
+		</form>
+		
+	</body>
+	
+
+</html>
